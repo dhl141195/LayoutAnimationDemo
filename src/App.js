@@ -5,6 +5,7 @@ import {
     Text,
     View,
     TouchableOpacity,
+    LayoutAnimation
 } from 'react-native';
 
 export default class App extends Component {
@@ -14,6 +15,29 @@ export default class App extends Component {
     }
 
     onPressHandler = (index) => {
+        LayoutAnimation.configureNext({
+            duration: 500,
+            create: { // property config animation cho các element được thêm mới khi render lần tiếp theo
+                type: LayoutAnimation.Types.spring,
+                springDamping: 0.7, // giảm độ nảy, càng nhỏ càng nảy (note: > 0, chỉ dùng cho Types.spring)
+
+                // thuộc tính bắt buộc với create config, xác định property dùng cho animation
+                // scaleXY thì item sẽ to dần khi được thêm
+                property: LayoutAnimation.Properties.scaleXY,
+            },
+            update: { // property config animation cho các element đã có và được cập nhật state khi render lần tiếp theo
+                type: LayoutAnimation.Types.spring,
+                springDamping: 0.4, // giảm độ nảy, càng nhỏ càng nảy (note: > 0, chỉ dùng cho Types.spring)
+            },
+            delete: { // property config animation cho các element bị xoá khi render lần tiếp theo
+                type: LayoutAnimation.Types.linear,
+
+                // thuộc tính bắt buộc với delete config, xác định property dùng cho animation
+                // opacity thì item sẽ mờ dần kgi bị xoá
+                property: LayoutAnimation.Properties.opacity
+            }
+        });
+
         this.setState({
             selectedBar: index
         });
