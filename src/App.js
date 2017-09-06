@@ -58,7 +58,8 @@ export default class App extends Component {
                         style={[
                             bar,
                             {
-                                width: selectedBar === 1 ? '100%' : `${Math.floor((Math.random() * 50) + 1)}%`
+                                width: selectedBar === 1 ? '100%' : `${Math.floor((Math.random() * 50) + 1)}%`,
+                                backgroundColor: '#68CAFB'
                             }
                         ]}
                     />
@@ -66,7 +67,8 @@ export default class App extends Component {
                         style={[
                             bar,
                             {
-                                width: selectedBar === 2 ? '100%' : `${Math.floor((Math.random() * 50) + 1)}%`
+                                width: selectedBar === 2 ? '100%' : `${Math.floor((Math.random() * 50) + 1)}%`,
+                                backgroundColor: '#C791E8'
                             }
                         ]}
                     />
@@ -74,10 +76,22 @@ export default class App extends Component {
                         style={[
                             bar,
                             {
-                                width: selectedBar === 3 ? '100%' : `${Math.floor((Math.random() * 50) + 1)}%`
+                                width: selectedBar === 3 ? '100%' : `${Math.floor((Math.random() * 50) + 1)}%`,
+                                backgroundColor: '#28A264'
                             }
                         ]}
                     />
+                    {selectedBar === 3 &&
+                        <View
+                            style={[
+                                bar,
+                                {
+                                    width: '50%',
+                                    backgroundColor: '#97D283'
+                                }
+                            ]}
+                        />
+                    }
                 </View>
             </View>
         );
